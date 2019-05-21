@@ -1,33 +1,97 @@
-.App {
+.Container {
+  display: grid;
+  grid-template-columns: minmax(60px, 1fr) minmax(400px, 790px) minmax(60px, 1fr);
+}
+.Edge {
+  /* border: 1px solid #00e4e4; */
+}
+.Game-header {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  grid-gap: 30px;
+}
+.Title {
+  font-size: 30px;
+  margin: 15px 0px 20px 0px;
+}
+.Header-button {
+  margin-top: 10px;
+}
+.New-battle {
+  font-family: 'Open Sans';
+  font-weight: 300;
+  position: relative;
+  left: 210px;
+  background-color: #272525;
+  border: 1px solid #b1b1b1;
+  outline: none;
+  color: #b1b1b1;
+  padding: 10px 25px;
+  margin: 5px 0px 20px 0px; 
   text-align: center;
+  font-size: 18px;
+}
+.New-battle:hover {
+  cursor: pointer;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgb(0, 0, 0);
+}
+.New-battle:active {
+  color: #b1b1b1;
+  border: 1px solid #b1b1b1;
+  box-shadow: 0 0 10px rgb(0, 0, 0);
+
+}
+.Game-field {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  grid-gap: 30px;
+}
+.Map-container {
+  width: 368px;
+  display: grid;
+  grid-template-columns: repeat(10, 35px);
+  grid-gap: 2px;
+  background-color: #068fb1;
+  box-shadow: 0 0 20px rgb(0, 0, 0);
+}
+.Map-container div {
+  width: 35px;
+  height: 35px;
+  /* background-color: #0899bd; */
+}
+.Gamer-Sea {
+  background-color: #0899bd;
+}
+.Gamer-Ship {
+  background-color: rgb(255, 255, 255);
+}
+.Pc-Sea {
+  background-color: #0899bd;
+}
+.Pc-Sea:hover {
+  background-color: #09738d;
+  cursor: crosshair;
+}
+.Pc-Sea:active{
+  background-color: #d30000;
+}
+.Transition-Pc-Sea {
+  transition: 0.6s;
+}
+.Sea-Hit {
+  background-color: #017794;
+}
+.Ship-Hit {
+  background-color: #a00000;
+}
+.Ship-Sink {
+  background-color: #353535;
+}
+.Animate {
+  transition: 0.6s;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
