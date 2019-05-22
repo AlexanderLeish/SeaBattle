@@ -1,8 +1,7 @@
 import React from 'react';
 import PcMap from './PcMap';
 import {connect} from 'react-redux';
-import {setPcMap} from '../store/battle/actions';
-import {setGamerMap} from '../store/battle/actions';
+import {setPcMap, setGamerMap, setMaps} from '../store/battle/actions';
 
 export class PcMapContainer extends React.Component {
     render () {
@@ -10,6 +9,7 @@ export class PcMapContainer extends React.Component {
             <PcMap 
                 setPcMap={this.props.setPcMap}
                 setGamerMap={this.props.setGamerMap}
+                setMaps={this.props.setMaps}
                 pcMap={this.props.pcMap} 
                 gamerMap={this.props.gamerMap} 
                 pcShips={this.props.pcShips} 
@@ -30,7 +30,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     setPcMap,
-    setGamerMap
+    setGamerMap,
+    setMaps
 }
 
 export default connect (mapStateToProps, mapDispatchToProps)(PcMapContainer);

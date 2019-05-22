@@ -6,35 +6,53 @@ import {gameOver, winner, loser} from '../functions/GameOver';
 export default class PcMap extends React.Component {
     constructor(props) {
         super(props);
-        this.onFire = this.onFire.bind(this);
+        this.onClickFire = this.onClickFire.bind(this);
+        this.onSelectWinner = this.onSelectWinner.bind(this);
     }
 
-    onFire = (idCell, currentPcMap, currnetGamerMap) => {
+    onSelectWinner = (thisWinner) => {
         let pcMap = [];
         let gamerMap = [];
-        this.props.setPcMap(pcMap);
-        const pcShips = this.props.pcShips;
-        pcMap = HitEnemy(idCell, currentPcMap, pcShips); // Выстрел пользователя
-        if (gameOver(pcShips)) { // Проверка победы пользователя
-            pcMap = loser;
-            gamerMap = winner;
-            this.props.setPcMap(pcMap);
-            this.props.setGamerMap(gamerMap);
-        } else {
-            this.props.setPcMap(pcMap);
-
-        this.props.setGamerMap(gamerMap);
-        const gamerShips = this.props.gamerShips;
-        gamerMap = HitGamer(currnetGamerMap, gamerShips); // Выстрел компьютера
-        if (gameOver(gamerShips)) { // Проверка победы компьютера
-            pcMap = winner;
-            gamerMap = loser;
-            this.props.setPcMap(pcMap);
-            this.props.setGamerMap(gamerMap);
-        } else {
-            this.props.setGamerMap(gamerMap);
+        this.props.setMaps(gamerMap, pcMap);
+        switch (thisWinner) {
+            case 1:
+                pcMap = loser;
+                gamerMap = winner;
+                this.props.setMaps(gamerMap, pcMap);
+            break;
+            case 2:
+                pcMap = winner;
+                gamerMap = loser;
+                this.props.setMaps(gamerMap, pcMap);
+            break;
+            default:
         }
     }
+
+    onClickFire = (idCell, currentPcMap, currnetGamerMap) => {
+        let thisWinner = 0;
+        // Выстрел пользователя
+        let pcMap = [];
+        this.props.setPcMap(pcMap);
+        const pcShips = this.props.pcShips;
+        pcMap = HitEnemy(idCell, currentPcMap, pcShips);
+        if (gameOver(pcShips)) { // Проверка победы пользователя
+            thisWinner = 1;
+            this.onSelectWinner(thisWinner);
+        } else {
+            this.props.setPcMap(pcMap);
+            // Выстрел компьютера
+            let gamerMap = [];
+            this.props.setGamerMap(gamerMap);
+            const gamerShips = this.props.gamerShips;
+            gamerMap = HitGamer(currnetGamerMap, gamerShips);
+            if (gameOver(gamerShips)) { // Проверка победы компьютера
+                thisWinner = 2;
+                this.onSelectWinner(thisWinner);
+            } else {
+                this.props.setGamerMap(gamerMap);
+            }
+        }
     }
 
     render() {
@@ -57,7 +75,7 @@ export default class PcMap extends React.Component {
                         key={idCell} 
                         className={classCell} 
                         id={idCell} 
-                        onClick={() => this.onFire(idCell, currentPcMap, currnetGamerMap)}>
+                        onClick={() => this.onClickFire(idCell, currentPcMap, currnetGamerMap)}>
                     </div>  
                 )
             }        
