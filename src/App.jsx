@@ -14,7 +14,6 @@ export default class App extends React.Component {
   return (
     <Provider store={store}>
       <div className="Container">
-        <div className="Edge"></div> 
         <div>
           <div className="Game-header">
             <div className="Title">Морской бой</div>
@@ -25,7 +24,6 @@ export default class App extends React.Component {
             <PcMapContainer/>
           </div>
         </div>
-        <div className="Edge"></div>
       </div>
     </Provider>
   );

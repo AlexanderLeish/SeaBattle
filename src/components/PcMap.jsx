@@ -61,14 +61,22 @@ export default class PcMap extends React.Component {
         const mapCell = currentPcMap.map((columnsCell, i) => {
             const rowsCell = columnsCell.map((cell, j) => {
                 let classCell = '';
-                if (cell === 1 || cell === 0) 
-                    classCell = 'Pc-Sea Transition-Pc-Sea'
-                    if (cell === 2)
-                    classCell = 'Sea-Hit Animate'
-                        else if (cell === 3)
-                        classCell = 'Ship-Hit Animate'
-                            else if (cell === 4)
-                            classCell = 'Ship-Sink Animate'
+                switch (cell) {
+                    case 0:
+                    case 1: 
+                        classCell = 'Pc-Sea Transition-Pc-Sea';
+                    break;
+                    case 2:
+                        classCell = 'Sea-Hit Animate';
+                    break;
+                    case 3:
+                        classCell = 'Ship-Hit Animate';
+                    break;
+                    case 4:
+                        classCell = 'Ship-Sink Animate';
+                    break;
+                    default:
+                }
                 let idCell = i+','+j;
                 return (
                     <div 
